@@ -22,10 +22,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[800],
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        backgroundColor: Colors.yellow[400],
         title: Text(
           "Reset Password",
           style: GoogleFonts.lexendMega(
@@ -35,7 +35,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         ),
       ),
       body: Container(
-        color: Colors.yellow[400],
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

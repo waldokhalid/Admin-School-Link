@@ -1,6 +1,7 @@
 import 'package:admin_school_link/All%20Screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:route_transitions/route_transitions.dart';
 import 'login_screen.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -18,7 +19,6 @@ class StartScreen extends StatelessWidget {
         elevation: 0,
         toolbarHeight: 50,
         backgroundColor: Colors.grey[800],
-        
       ),
       body: Container(
         // color: Colors.yellow[400],
@@ -51,7 +51,6 @@ class StartScreen extends StatelessWidget {
                 ],
               ),
             ),
-            
             Expanded(
               flex: 1,
               child: Column(
@@ -86,16 +85,17 @@ class StartScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(
-                            context,
-                            LoginScreen.idScreen,
-                          );
+                          // Navigator.pushNamed(
+                          //   context,
+                          //   LoginScreen.idScreen,
+                          // );
+                          slideLeftWidget(
+                              newPage: LoginScreen(), context: context);
                         },
                         child: Text(
                           "Sign In",
@@ -123,10 +123,12 @@ class StartScreen extends StatelessWidget {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(
-                            context,
-                            SignUpScreen.idScreen,
-                          );
+                          // Navigator.pushNamed(
+                          //   context,
+                          //   SignUpScreen.idScreen,
+                          // );
+                          slideLeftWidget(
+                              newPage: SignUpScreen(), context: context);
                         },
                         child: Text(
                           "Sign Up",

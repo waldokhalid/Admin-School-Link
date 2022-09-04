@@ -4,6 +4,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:route_transitions/route_transitions.dart';
 
 class InventoryScreen extends StatefulWidget {
   const InventoryScreen({key}) : super(key: key);
@@ -146,10 +147,11 @@ class _InventoryScreenState extends State<InventoryScreen> {
         child: FloatingActionButton(
           backgroundColor: Colors.blueAccent,
           onPressed: () {
-            Navigator.pushNamed(
-              context,
-              UpdateInventory.idScreen,
-            );
+            // Navigator.pushNamed(
+            //   context,
+            //   UpdateInventory.idScreen,
+            // );
+            slideUpWidget(newPage: UpdateInventory(), context: context);
           },
           child: Icon(
             Icons.add_rounded,
@@ -266,37 +268,35 @@ class _InventoryScreenState extends State<InventoryScreen> {
                                 ElevatedButton(
                                   onPressed: () {
                                     String validator = validateBeforeSubmit();
-                                    if(validator != "empty"){
+                                    if (validator != "empty") {
                                       setState(() {
-                                      updatedItemAmountToInt =
-                                          int.parse(updatedItemAmount.text);
-                                    });
-                                    itemPositiveIncrement(items, itemAmount,
-                                        updatedItemAmountToInt);
-                                    updatedItemAmount.clear();
-                                    getDriverDetails();
-                                    Fluttertoast.showToast(
-                                      msg:
-                                          "Number of $items has been updated in the inventory.",
-                                      backgroundColor: Colors.black,
-                                      gravity: ToastGravity.CENTER,
-                                      textColor: Colors.white,
-                                      timeInSecForIosWeb: 5,
-                                      fontSize: 16,
-                                    );
-                                    }else{
+                                        updatedItemAmountToInt =
+                                            int.parse(updatedItemAmount.text);
+                                      });
+                                      itemPositiveIncrement(items, itemAmount,
+                                          updatedItemAmountToInt);
+                                      updatedItemAmount.clear();
+                                      getDriverDetails();
                                       Fluttertoast.showToast(
-                                      msg:
-                                          "Please enter the amount to be added.",
-                                      backgroundColor: Colors.black,
-                                      gravity: ToastGravity.CENTER,
-                                      textColor: Colors.white,
-                                      timeInSecForIosWeb: 5,
-                                      fontSize: 16,
-                                    );
+                                        msg:
+                                            "Number of $items has been updated in the inventory.",
+                                        backgroundColor: Colors.black,
+                                        gravity: ToastGravity.CENTER,
+                                        textColor: Colors.white,
+                                        timeInSecForIosWeb: 5,
+                                        fontSize: 16,
+                                      );
+                                    } else {
+                                      Fluttertoast.showToast(
+                                        msg:
+                                            "Please enter the amount to be added.",
+                                        backgroundColor: Colors.black,
+                                        gravity: ToastGravity.CENTER,
+                                        textColor: Colors.white,
+                                        timeInSecForIosWeb: 5,
+                                        fontSize: 16,
+                                      );
                                     }
-
-                                    
                                   },
                                   child: Text("Add"),
                                 ),
@@ -305,34 +305,33 @@ class _InventoryScreenState extends State<InventoryScreen> {
                                     String validator = validateBeforeSubmit();
                                     if (validator != "empty") {
                                       setState(() {
-                                      updatedItemAmountToInt =
-                                          int.parse(updatedItemAmount.text);
-                                    });
-                                    ItemNegativeIncrement(items, itemAmount,
-                                        updatedItemAmountToInt);
-                                    updatedItemAmount.clear();
-                                    getDriverDetails();
-                                    Fluttertoast.showToast(
-                                      msg:
-                                          "Number of $items has been updated in the inventory.",
-                                      backgroundColor: Colors.black,
-                                      gravity: ToastGravity.CENTER,
-                                      textColor: Colors.white,
-                                      timeInSecForIosWeb: 5,
-                                      fontSize: 16,
-                                    );
+                                        updatedItemAmountToInt =
+                                            int.parse(updatedItemAmount.text);
+                                      });
+                                      ItemNegativeIncrement(items, itemAmount,
+                                          updatedItemAmountToInt);
+                                      updatedItemAmount.clear();
+                                      getDriverDetails();
+                                      Fluttertoast.showToast(
+                                        msg:
+                                            "Number of $items has been updated in the inventory.",
+                                        backgroundColor: Colors.black,
+                                        gravity: ToastGravity.CENTER,
+                                        textColor: Colors.white,
+                                        timeInSecForIosWeb: 5,
+                                        fontSize: 16,
+                                      );
                                     } else {
                                       Fluttertoast.showToast(
-                                      msg:
-                                          "Please enter the amount to be subtracted.",
-                                      backgroundColor: Colors.black,
-                                      gravity: ToastGravity.CENTER,
-                                      textColor: Colors.white,
-                                      timeInSecForIosWeb: 5,
-                                      fontSize: 16,
-                                    );
+                                        msg:
+                                            "Please enter the amount to be subtracted.",
+                                        backgroundColor: Colors.black,
+                                        gravity: ToastGravity.CENTER,
+                                        textColor: Colors.white,
+                                        timeInSecForIosWeb: 5,
+                                        fontSize: 16,
+                                      );
                                     }
-                                    
                                   },
                                   child: Text("Subtract"),
                                 ),

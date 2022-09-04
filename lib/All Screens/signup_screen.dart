@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:route_transitions/route_transitions.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 import '../main.dart';
@@ -118,8 +119,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
         "Please verify your email adress.\nCheck SPAM Folder if you don't recieve an Email.",
         context,
       );
-      Navigator.pushNamedAndRemoveUntil(
-          context, LoginScreen.idScreen, (route) => false);
+      // Navigator.pushNamedAndRemoveUntil(
+      //     context, LoginScreen.idScreen, (route) => false);
+      slideLeftWidget(newPage: LoginScreen(), context: context);
     } else {
       // if user not created dispaly toast message.
       Navigator.pop(context);
@@ -437,4 +439,3 @@ displayToastMessage(String message, BuildContext context) {
       backgroundColor: Colors.black,
       gravity: ToastGravity.CENTER);
 }
-

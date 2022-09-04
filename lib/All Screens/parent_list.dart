@@ -72,6 +72,7 @@ class _ParentsListState extends State<ParentsList> {
     var ref = databaseReference.child("users/$schoolName/Parents");
     var snapshot = await ref.get();
     if (snapshot.exists) {
+      print(snapshot.value[0]);
       setState(() {
         var value = snapshot.value;
         parentList = Map.from(value)
@@ -131,6 +132,25 @@ class _ParentsListState extends State<ParentsList> {
       print("$e");
     }
     // updatedItem = 0;
+  }
+
+  resetSchoolFees(parent_uid) {
+    print(schoolName);
+    print(parent_uid);
+    try {
+      databaseReference
+          .child("users")
+          .child(schoolName)
+          .child("Parents")
+          .child("$parent_uid")
+          .update({
+        "Paid": 0,
+        "Balance": 0,
+        "Total": 0,
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -252,7 +272,10 @@ class _ParentsListState extends State<ParentsList> {
                                   Text(
                                     "Child Name: $childName",
                                     textAlign: TextAlign.center,
-                                    style: GoogleFonts.lexendMega(fontSize: 12,color: Colors.white,),
+                                    style: GoogleFonts.lexendMega(
+                                      fontSize: 12,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                   SizedBox(
                                     height: 15,
@@ -260,7 +283,10 @@ class _ParentsListState extends State<ParentsList> {
                                   Text(
                                     driverEmail,
                                     textAlign: TextAlign.center,
-                                    style: GoogleFonts.lexendMega(fontSize: 12,color: Colors.white,),
+                                    style: GoogleFonts.lexendMega(
+                                      fontSize: 12,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                   SizedBox(
                                     height: 5,
@@ -268,7 +294,10 @@ class _ParentsListState extends State<ParentsList> {
                                   Text(
                                     driverPhone,
                                     textAlign: TextAlign.center,
-                                    style: GoogleFonts.lexendMega(fontSize: 12,color: Colors.white,),
+                                    style: GoogleFonts.lexendMega(
+                                      fontSize: 12,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                   SizedBox(
                                     height: 15,
@@ -276,7 +305,10 @@ class _ParentsListState extends State<ParentsList> {
                                   Text(
                                     "Total School Fees: $totalSchoolFees",
                                     textAlign: TextAlign.center,
-                                    style: GoogleFonts.lexendMega(fontSize: 12,color: Colors.white,),
+                                    style: GoogleFonts.lexendMega(
+                                      fontSize: 12,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                   SizedBox(
                                     height: 5,
@@ -284,7 +316,10 @@ class _ParentsListState extends State<ParentsList> {
                                   Text(
                                     "Paid School Fees: $paidSchoolFees",
                                     textAlign: TextAlign.center,
-                                    style: GoogleFonts.lexendMega(fontSize: 12,color: Colors.white,),
+                                    style: GoogleFonts.lexendMega(
+                                      fontSize: 12,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                   SizedBox(
                                     height: 5,
@@ -292,7 +327,10 @@ class _ParentsListState extends State<ParentsList> {
                                   Text(
                                     "Balance School Fees: $balanceSchoolFees",
                                     textAlign: TextAlign.center,
-                                    style: GoogleFonts.lexendMega(fontSize: 12,color: Colors.white,),
+                                    style: GoogleFonts.lexendMega(
+                                      fontSize: 12,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                   SizedBox(
                                     height: 15,
@@ -330,37 +368,60 @@ class _ParentsListState extends State<ParentsList> {
                                   SizedBox(
                                     height: 5,
                                   ),
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        updatedItemAmountToInt =
-                                            int.parse(feesPaymentUpdate.text);
-                                      });
-                                      updateSchoolFeesPayment(
-                                        totalSchoolFees,
-                                        paidSchoolFees,
-                                        balanceSchoolFees,
-                                        updatedItemAmountToInt,
-                                        parentUserUid,
-                                      );
-                                      feesPaymentUpdate.clear();
-                                      getParentDetails();
-                                      Fluttertoast.showToast(
-                                        msg:
-                                            "Total paid fees has been updated.\n$driverName will be able to see the update on their app.",
-                                        backgroundColor: Colors.black,
-                                        gravity: ToastGravity.CENTER,
-                                        textColor: Colors.white,
-                                        timeInSecForIosWeb: 5,
-                                        fontSize: 16,
-                                      );
-                                    },
-                                    child: Text(
-                                      "Add",
-                                      style: GoogleFonts.lexendMega(
-                                        fontSize: 12,
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            updatedItemAmountToInt = int.parse(
+                                                feesPaymentUpdate.text);
+                                          });
+                                          updateSchoolFeesPayment(
+                                            totalSchoolFees,
+                                            paidSchoolFees,
+                                            balanceSchoolFees,
+                                            updatedItemAmountToInt,
+                                            parentUserUid,
+                                          );
+                                          feesPaymentUpdate.clear();
+                                          getParentDetails();
+                                          Fluttertoast.showToast(
+                                            msg:
+                                                "Total paid fees has been updated.\n$driverName will be able to see the update on their app.",
+                                            backgroundColor: Colors.black,
+                                            gravity: ToastGravity.CENTER,
+                                            textColor: Colors.white,
+                                            timeInSecForIosWeb: 5,
+                                            fontSize: 16,
+                                          );
+                                        },
+                                        child: Text(
+                                          "Add",
+                                          style: GoogleFonts.lexendMega(
+                                            fontSize: 12,
+                                          ),
+                                        ),
                                       ),
-                                    ),
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          resetSchoolFees(parentUserUid);
+                                          Fluttertoast.showToast(
+                                            msg: "School Fees for $driverName has been Reset",
+                                            backgroundColor: Colors.black,
+                                            gravity: ToastGravity.CENTER,
+                                            textColor: Colors.white,
+                                            timeInSecForIosWeb: 4,
+                                          );
+                                        },
+                                        child: Text(
+                                          "Reset",
+                                          style: GoogleFonts.lexendMega(
+                                              fontSize: 12),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   SizedBox(height: 20),
                                   totalSchoolFees == 0

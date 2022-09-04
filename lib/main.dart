@@ -1,3 +1,5 @@
+import 'package:admin_school_link/All%20Screens/pettCash.dart';
+import 'package:admin_school_link/All%20Screens/pettyCashRecordList.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'All Screens/absent_students.dart';
@@ -73,6 +75,8 @@ class MyApp extends StatelessWidget {
             AbsentStudentListScreen(),
         AnnouncmentScreen.idScreen: (context) => AnnouncmentScreen(),
         StaffScreen.idScreen: (context) => StaffScreen(),
+        PettyCashScreen.idScreen: (context) => PettyCashScreen(),
+        PettyCashRecordList.idScreen: (context) => PettyCashRecordList(),
         InventoryScreen.idScreen: (context) => InventoryScreen(),
         UpdateInventory.idScreen: (context) => UpdateInventory(),
         StudentCheckinOut.idScreen: (context) => StudentCheckinOut(),

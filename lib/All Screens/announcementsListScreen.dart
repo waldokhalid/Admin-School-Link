@@ -176,7 +176,7 @@ class _AnnouncmentListScreenState extends State<AnnouncmentListScreen> {
         centerTitle: true,
         backgroundColor: Colors.grey[800],
         title: Text(
-          "Announcments",
+          "Announcements",
           style: GoogleFonts.lexendMega(
             color: Colors.white,
             fontSize: 16,

@@ -1,4 +1,3 @@
-
 import 'package:admin_school_link/All%20Screens/dashBoard.dart';
 import 'package:admin_school_link/All%20Screens/signup_screen.dart';
 import 'package:admin_school_link/All%20Widgets/progress_dialog.dart';
@@ -8,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:route_transitions/route_transitions.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'reset_password.dart';
 // import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -29,7 +29,8 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController schoolNameTextEditingController =
       TextEditingController();
 
-  final databaseReference = FirebaseDatabase.instance.reference().child("users");
+  final databaseReference =
+      FirebaseDatabase.instance.reference().child("users");
 
   bool _isObscure = true;
   late String schoolName;
@@ -297,8 +298,9 @@ class _LoginScreenState extends State<LoginScreen> {
           // variable "snap" is of type DataSnapshot. Everytime you read data from database, you recieve data as Datasnapshot.
           if (snap.value != null) {
             //  if snap value not equal to  null, login user and procceed to "MainScreen". Show toast meessage below.
-            Navigator.pushNamedAndRemoveUntil(
-                context, DashBoard.idScreen, (route) => false);
+            // Navigator.pushNamedAndRemoveUntil(
+            //     context, DashBoard.idScreen, (route) => false);
+            slideLeftWidget(newPage: DashBoard(), context: context);
             displayToastMessage("Login Successful", context);
           } else {
             // if snap value is equal to null, dont sign in and display toast mesage

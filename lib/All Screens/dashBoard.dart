@@ -5,6 +5,7 @@ import 'package:admin_school_link/All%20Screens/announcementsListScreen.dart';
 import 'package:admin_school_link/All%20Screens/check_in_out_students.dart';
 import 'package:admin_school_link/All%20Screens/inventory_screen.dart';
 import 'package:admin_school_link/All%20Screens/parent_list.dart';
+import 'package:admin_school_link/All%20Screens/pettyCashRecordList.dart';
 import 'package:admin_school_link/All%20Screens/staff_screen.dart';
 import 'package:admin_school_link/All%20Screens/start_screen.dart';
 import 'package:admin_school_link/services/local_push_notifications.dart';
@@ -12,7 +13,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:route_transitions/route_transitions.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({key}) : super(key: key);
@@ -97,6 +100,18 @@ class _DashBoardState extends State<DashBoard> {
     } catch (e) {
       print(e);
     }
+
+    try {
+      await databaseReference
+          .child("users")
+          .child(schoolName)
+          .child("Admin Token")
+          .update(
+        {"token": "No Token"},
+      );
+    } catch (e) {
+      print(e);
+    }
     FirebaseAuth.instance.signOut();
   }
 
@@ -111,6 +126,14 @@ class _DashBoardState extends State<DashBoard> {
         .child(schoolName)
         .child("Admin")
         .child(adminUID)
+        .update(
+      {"token": token},
+    );
+
+    databaseReference
+        .child("users")
+        .child(schoolName)
+        .child("Admin Token")
         .update(
       {"token": token},
     );
@@ -170,10 +193,12 @@ class _DashBoardState extends State<DashBoard> {
             children: [
               InkWell(
                 onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    StudentCheckinOut.idScreen,
-                  );
+                  // Navigator.pushNamed(
+                  //   context,
+                  //   StudentCheckinOut.idScreen,
+                  // );
+                  slideLeftWidget(
+                      newPage: StudentCheckinOut(), context: context);
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -213,7 +238,8 @@ class _DashBoardState extends State<DashBoard> {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, ParentsList.idScreen);
+                  // Navigator.pushNamed(context, ParentsList.idScreen);
+                  slideRightWidget(newPage: ParentsList(), context: context);
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -254,8 +280,10 @@ class _DashBoardState extends State<DashBoard> {
             children: [
               InkWell(
                 onTap: () {
-                  Navigator.pushNamed(
-                      context, AbsentStudentListScreen.idScreen);
+                  // Navigator.pushNamed(
+                  //     context, AbsentStudentListScreen.idScreen);
+                  slideLeftWidget(
+                      newPage: AbsentStudentListScreen(), context: context);
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -296,6 +324,11 @@ class _DashBoardState extends State<DashBoard> {
                 onTap: () {
                   // Navigator.pushNamed(context, DriverListScreen.idScreen);
                   Null;
+                  Fluttertoast.showToast(
+                      msg: "Track Driver Coming Soon",
+                      gravity: ToastGravity.CENTER,
+                      backgroundColor: Colors.black,
+                      textColor: Colors.white);
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -336,7 +369,8 @@ class _DashBoardState extends State<DashBoard> {
             children: [
               InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, StaffScreen.idScreen);
+                  // Navigator.pushNamed(context, StaffScreen.idScreen);
+                  slideLeftWidget(newPage: StaffScreen(), context: context);
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -376,14 +410,13 @@ class _DashBoardState extends State<DashBoard> {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    // UpdateInventory.idScreen,
-                    InventoryScreen.idScreen,
-                  );
-                  SnackBar(
-                    content: Text("Comming Soon"),
-                  );
+                  // Navigator.pushNamed(
+                  //   context,
+                  //   // UpdateInventory.idScreen,
+                  //   InventoryScreen.idScreen,
+                  // );
+                  slideRightWidget(
+                      newPage: InventoryScreen(), context: context);
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -420,14 +453,13 @@ class _DashBoardState extends State<DashBoard> {
             ],
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SizedBox(
-                width: 10,
-              ),
               InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, AnnouncmentListScreen.idScreen);
+                  // Navigator.pushNamed(context, AnnouncmentListScreen.idScreen);
+                  slideLeftWidget(
+                      newPage: AnnouncmentListScreen(), context: context);
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -452,6 +484,45 @@ class _DashBoardState extends State<DashBoard> {
                   child: Center(
                     child: Text(
                       "List of Bulletins",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lexendMega(
+                        fontSize: 12,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  // Navigator.pushNamed(context, PettyCashRecordList.idScreen);
+                  slideRightWidget(
+                      newPage: PettyCashRecordList(), context: context);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.pink[900],
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(15),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          spreadRadius: 6,
+                          blurRadius: 6,
+                          offset: Offset(0, 0),
+                          blurStyle:
+                              BlurStyle.outer // changes position of shadow
+                          ),
+                    ],
+                  ),
+                  // color: Colors.redAccent,
+                  height: (MediaQuery.of(context).size.height) / 10,
+                  width: (MediaQuery.of(context).size.width) / 3,
+                  child: Center(
+                    child: Text(
+                      "Petty Cash",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.lexendMega(
                         fontSize: 12,
