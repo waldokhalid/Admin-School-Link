@@ -24,12 +24,13 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     return Scaffold(
       backgroundColor: Colors.grey[800],
       appBar: AppBar(
+        backgroundColor: Colors.grey[800],
         elevation: 0,
         centerTitle: true,
         title: Text(
           "Reset Password",
           style: GoogleFonts.lexendMega(
-            color: Colors.black,
+            color: Colors.white,
             fontSize: 16,
           ),
         ),
@@ -43,7 +44,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 "Enter Email. We will send you a PASSWORD reset email.",
                 style: GoogleFonts.lexendMega(
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: 12,
                 ),
                 textAlign: TextAlign.center,
@@ -66,17 +67,17 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     labelText: "Email",
                     labelStyle: GoogleFonts.lexendMega(
                       fontSize: 12,
-                      color: Colors.black,
+                      color: Colors.grey[200],
                     ),
                     hintStyle: GoogleFonts.lexendMega(
-                      color: Colors.black,
+                      color: Colors.grey[200],
                       fontSize: 12,
                     ),
                     hintText: "Email",
                   ),
                   style: GoogleFonts.lexendMega(
                     fontSize: 12,
-                    color: Colors.black,
+                    color: Colors.white,
                   ),
                   onChanged: (value) {
                     setState(
@@ -103,6 +104,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       "Send Request",
                       style: GoogleFonts.lexendMega(
                         fontSize: 12,
+                        color: Colors.white
                       ),
                     ),
                   ),
@@ -120,6 +122,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   "Cancel",
                   style: GoogleFonts.lexendMega(
                     fontSize: 12,
+                    color: Colors.white
                   ),
                 ),
               ),
