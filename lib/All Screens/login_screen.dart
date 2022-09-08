@@ -29,11 +29,12 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController schoolNameTextEditingController =
       TextEditingController();
 
-  final databaseReference =
-      FirebaseDatabase.instance.reference().child("users");
+  final databaseReference = FirebaseDatabase.instance.reference();
 
   bool _isObscure = true;
   late String schoolName;
+
+  late String schoolChecker;
 
   @override
   void dispose() {
@@ -195,6 +196,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             print("Login button pressed");
                             loginUser(context);
+                            // checkIfSchoolExists();
                           },
                           child: Text(
                             "Sign In",
@@ -259,6 +261,71 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
+  // Future checkIfSchoolExists() async {
+  //   Fluttertoast.showToast(
+  //     msg: "Checking If School Exists in Our Database",
+  //     backgroundColor: Colors.black,
+  //     textColor: Colors.white,
+  //   );
+  //   print("\n\n\n Checking Schools \n\n\n");
+
+  //   try {
+  //     // ignore: unused_local_variable
+  //     var ref = await databaseReference.child("users").child("schools");
+
+  //     print(schoolNameTextEditingController.text.trim());
+
+  //     var snapshot = await ref.get();
+  //     if (snapshot.exists) {
+  //       print(snapshot.exists);
+
+  //       try {
+  //         schoolChecker =
+  //             snapshot.value[schoolNameTextEditingController.text.trim()];
+  //       } catch (e) {
+  //         print(e);
+  //       }
+
+  //       print("\n\n\n\n\n$schoolChecker\n\n\n\n\n");
+
+  //       Future.delayed(Duration(seconds: 5));
+
+  //       if (schoolChecker != "false") {
+  //         loginUser(context);
+  //         print("DONE!!");
+  //       } else {
+  //         Fluttertoast.showToast(
+  //           msg:
+  //               "Looks like payments haven't been made. Please Contact School Link Platform.",
+  //           backgroundColor: Colors.black,
+  //           textColor: Colors.white,
+  //           timeInSecForIosWeb: 20,
+  //         );
+  //       }
+  //     } else {
+  //       // Fluttertoast.showToast(
+  //       //   msg:
+  //       //       "School Does Not Exist in Our Database.\nContact limeappdevs@gmail.com to get you  on our Platform.",
+  //       //   backgroundColor: Colors.black,
+  //       //   textColor: Colors.white,
+  //       //   timeInSecForIosWeb: 20,
+  //       // );
+  //     }
+  //   } catch (e) {
+  //     // Fluttertoast.showToast(
+  //     //   msg:
+  //     //       "School Does Not Exist in Our Database.\nContact limeappdevs@gmail.com to get you  on our Platform.",
+  //     //   backgroundColor: Colors.black,
+  //     //   textColor: Colors.white,
+  //     //   timeInSecForIosWeb: 20,
+  //     // );
+  //     print(schoolNameTextEditingController.text.trim());
+  //     print(
+  //         "Error: School or Driver Does Not Exist in Our Database. Contact the School or Driver.");
+  //     print("$e");
+  //   }
+  // }
 
   void loginUser(BuildContext context) async {
     print("Inside login function");

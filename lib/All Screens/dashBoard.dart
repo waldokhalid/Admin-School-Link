@@ -55,19 +55,21 @@ class _DashBoardState extends State<DashBoard> {
   Future<dynamic> getInfo(adminUID) async {
     // This method grabs Admin details
     // final x = await getParentUID();
-    await databaseReference
-        .child("users")
-        .child("Admin")
-        .child(adminUID)
-        .once()
-        .then(
-      (snapshot) async {
-        setState(() {
-          schoolName = snapshot.value["school"].toString();
-          // print(schoolName);
-        });
-      },
-    );
+    try {
+      await databaseReference
+          .child("users")
+          .child("Admin")
+          .child(adminUID)
+          .once()
+          .then(
+        (snapshot) async {
+          setState(() {
+            schoolName = snapshot.value["school"].toString();
+            // print(schoolName);
+          });
+        },
+      );
+    } catch (e) {}
     // getStudentTimes(schoolName);
     storeNotificationToken(schoolName);
   }
@@ -134,6 +136,7 @@ class _DashBoardState extends State<DashBoard> {
         .child("users")
         .child(schoolName)
         .child("Admin Token")
+        .child(adminUID)
         .update(
       {"token": token},
     );

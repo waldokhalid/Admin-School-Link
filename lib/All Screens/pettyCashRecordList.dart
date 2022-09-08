@@ -35,7 +35,6 @@ class _PettyCashRecordListState extends State<PettyCashRecordList> {
     // final ref = FirebaseDatabase.instance.reference();
     User? user = auth.currentUser;
     adminUID = user!.uid.toString();
-
     await Future.delayed(
       const Duration(milliseconds: 200),
     );
@@ -138,9 +137,7 @@ class _PettyCashRecordListState extends State<PettyCashRecordList> {
   // calculateTotalAmount(itemPrice) {
   //   print("Total: $totalAmount");
   //   print("Item Prices: $itemPrice");
-
   //   totalAmount = totalAmount + int.parse(itemPrice);
-
   //   print(totalAmount);
   // }
 
@@ -287,14 +284,14 @@ class _PettyCashRecordListState extends State<PettyCashRecordList> {
                 color: Colors.grey[200],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                "Amount Used: KSH $totalAmount",
-                style: GoogleFonts.lexendMega(
-                    fontSize: 16, color: Colors.grey[200]),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(16.0),
+            //   child: Text(
+            //     "Amount Used: KSH $totalAmount",
+            //     style: GoogleFonts.lexendMega(
+            //         fontSize: 16, color: Colors.grey[200]),
+            //   ),
+            // ),
             if (pettycashRecord.isEmpty)
               Center(
                 child: Column(
@@ -367,16 +364,16 @@ class _PettyCashRecordListState extends State<PettyCashRecordList> {
     );
   }
 
-  DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
-        value: item,
-        child: Text(
-          item,
-          style: GoogleFonts.lexendMega(
-            fontSize: 12,
-            color: Colors.grey[200],
-          ),
-        ),
-      );
+  // DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
+  //       value: item,
+  //       child: Text(
+  //         item,
+  //         style: GoogleFonts.lexendMega(
+  //           fontSize: 12,
+  //           color: Colors.grey[200],
+  //         ),
+  //       ),
+  //     );
 }
 
 class PettyCash {

@@ -154,7 +154,6 @@ class _PettyCashScreenState extends State<PettyCashScreen> {
   //   } catch (e) {
   //     print("$e");
   //   }
-
   //   return pettycashRecord;
   // }
 
@@ -183,233 +182,236 @@ class _PettyCashScreenState extends State<PettyCashScreen> {
           ),
         ),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  "Select Week -",
-                  style: GoogleFonts.lexendMega(
-                    fontSize: 16,
-                    color: Colors.grey[200],
-                  ),
-                ),
-                Container(
-                  // width: (MediaQuery.of(context).size.width) / 3,
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(15),
+      body: SingleChildScrollView(
+        physics: NeverScrollableScrollPhysics(),
+        child: Center(
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    "Select Week -",
+                    style: GoogleFonts.lexendMega(
+                      fontSize: 16,
+                      color: Colors.grey[200],
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey.withOpacity(0.2),
-                          spreadRadius: 6,
-                          blurRadius: 6,
-                          offset: Offset(0, 0),
-                          blurStyle:
-                              BlurStyle.outer // changes position of shadow
-                          ),
-                    ],
                   ),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                      dropdownColor: Colors.grey[600],
-                      icon: Icon(Icons.arrow_drop_down_circle_outlined),
-                      iconSize: 20,
-                      iconEnabledColor: Colors.blue,
-                      value: selectVal,
-                      items: const [
-                        DropdownMenuItem(
-                          child: Text("1"),
-                          value: "1",
-                        ),
-                        DropdownMenuItem(
-                          child: Text("2"),
-                          value: "2",
-                        ),
-                        DropdownMenuItem(
-                          child: Text("3"),
-                          value: "3",
-                        ),
-                        DropdownMenuItem(
-                          child: Text("4"),
-                          value: "4",
-                        ),
-                        DropdownMenuItem(
-                          child: Text("5"),
-                          value: "5",
-                        ),
-                        DropdownMenuItem(
-                          child: Text("6"),
-                          value: "6",
-                        ),
-                        DropdownMenuItem(
-                          child: Text("7"),
-                          value: "7",
-                        ),
-                        DropdownMenuItem(
-                          child: Text("8"),
-                          value: "8",
-                        ),
-                        DropdownMenuItem(
-                          child: Text("9"),
-                          value: "9",
-                        ),
-                        DropdownMenuItem(
-                          child: Text("10"),
-                          value: "10",
-                        ),
-                        DropdownMenuItem(
-                          child: Text("11"),
-                          value: "11",
-                        ),
-                        DropdownMenuItem(
-                          child: Text("12"),
-                          value: "12",
-                        ),
+                  Container(
+                    // width: (MediaQuery.of(context).size.width) / 3,
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(15),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            spreadRadius: 6,
+                            blurRadius: 6,
+                            offset: Offset(0, 0),
+                            blurStyle:
+                                BlurStyle.outer // changes position of shadow
+                            ),
                       ],
-                      onChanged: dropDownCallBak,
-                      style: GoogleFonts.lexendMega(
-                        fontSize: 20,
-                        color: Colors.grey[200],
+                    ),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                        dropdownColor: Colors.grey[600],
+                        icon: Icon(Icons.arrow_drop_down_circle_outlined),
+                        iconSize: 20,
+                        iconEnabledColor: Colors.blue,
+                        value: selectVal,
+                        items: const [
+                          DropdownMenuItem(
+                            child: Text("1"),
+                            value: "1",
+                          ),
+                          DropdownMenuItem(
+                            child: Text("2"),
+                            value: "2",
+                          ),
+                          DropdownMenuItem(
+                            child: Text("3"),
+                            value: "3",
+                          ),
+                          DropdownMenuItem(
+                            child: Text("4"),
+                            value: "4",
+                          ),
+                          DropdownMenuItem(
+                            child: Text("5"),
+                            value: "5",
+                          ),
+                          DropdownMenuItem(
+                            child: Text("6"),
+                            value: "6",
+                          ),
+                          DropdownMenuItem(
+                            child: Text("7"),
+                            value: "7",
+                          ),
+                          DropdownMenuItem(
+                            child: Text("8"),
+                            value: "8",
+                          ),
+                          DropdownMenuItem(
+                            child: Text("9"),
+                            value: "9",
+                          ),
+                          DropdownMenuItem(
+                            child: Text("10"),
+                            value: "10",
+                          ),
+                          DropdownMenuItem(
+                            child: Text("11"),
+                            value: "11",
+                          ),
+                          DropdownMenuItem(
+                            child: Text("12"),
+                            value: "12",
+                          ),
+                        ],
+                        onChanged: dropDownCallBak,
+                        style: GoogleFonts.lexendMega(
+                          fontSize: 20,
+                          color: Colors.grey[200],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: TextField(
-                controller: item,
-                keyboardType: TextInputType.text,
-                textCapitalization: TextCapitalization.sentences,
-                decoration: InputDecoration(
-                  enabledBorder: const OutlineInputBorder(),
-                  border: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.black,
-                      style: BorderStyle.solid,
-                      width: 2,
-                    ),
-                  ),
-                  label: Text(
-                    "Item Name",
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.lexendMega(
-                      fontSize: 12,
-                      color: Colors.white70,
-                    ),
-                  ),
-                ),
-                style: GoogleFonts.lexendMega(
-                  fontSize: 12,
-                  color: Colors.white,
-                ),
+                ],
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: TextField(
-                controller: itemPrice,
-                keyboardType: TextInputType.number,
-                textCapitalization: TextCapitalization.sentences,
-                decoration: InputDecoration(
-                  enabledBorder: const OutlineInputBorder(),
-                  border: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.black,
-                      style: BorderStyle.solid,
-                      width: 2,
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: TextField(
+                  controller: item,
+                  keyboardType: TextInputType.text,
+                  textCapitalization: TextCapitalization.sentences,
+                  decoration: InputDecoration(
+                    enabledBorder: const OutlineInputBorder(),
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.black,
+                        style: BorderStyle.solid,
+                        width: 2,
+                      ),
+                    ),
+                    label: Text(
+                      "Item Name",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lexendMega(
+                        fontSize: 12,
+                        color: Colors.white70,
+                      ),
                     ),
                   ),
-                  label: Text(
-                    "Item Price",
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.lexendMega(
-                      fontSize: 12,
-                      color: Colors.white70,
-                    ),
-                  ),
-                ),
-                style: GoogleFonts.lexendMega(
-                  fontSize: 12,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: TextField(
-                controller: mPesaMessage,
-                keyboardType: TextInputType.text,
-                textCapitalization: TextCapitalization.sentences,
-                decoration: InputDecoration(
-                  enabledBorder: const OutlineInputBorder(),
-                  border: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.black,
-                      style: BorderStyle.solid,
-                      width: 2,
-                    ),
-                  ),
-                  label: Text(
-                    "Paste Mpesa Message",
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.lexendMega(
-                      fontSize: 12,
-                      color: Colors.white70,
-                    ),
-                  ),
-                ),
-                style: GoogleFonts.lexendMega(
-                  fontSize: 12,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 15),
-              child: ElevatedButton(
-                onPressed: () {
-                  String validator = validateBeforeSubmit();
-
-                  if (validator != "empty") {
-                    Fluttertoast.showToast(
-                      msg: "Please Wait..",
-                      gravity: ToastGravity.CENTER,
-                      backgroundColor: Colors.black,
-                    );
-                    updatePettyCashInDB(selectVal);
-                    Fluttertoast.showToast(
-                      msg: "Petty Cash Updated!",
-                      gravity: ToastGravity.CENTER,
-                      backgroundColor: Colors.black,
-                    );
-                  } else {
-                    Fluttertoast.showToast(
-                      msg:
-                          "Please fill announcement Title and Anouncement body before sending.",
-                      gravity: ToastGravity.CENTER,
-                      backgroundColor: Colors.black,
-                      timeInSecForIosWeb: 7,
-                    );
-                  }
-
-                  // loopThroughNotificationTokensToSendNotificaitons();
-                },
-                child: Text(
-                  "Send",
                   style: GoogleFonts.lexendMega(
                     fontSize: 12,
+                    color: Colors.white,
                   ),
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: TextField(
+                  controller: itemPrice,
+                  keyboardType: TextInputType.number,
+                  textCapitalization: TextCapitalization.sentences,
+                  decoration: InputDecoration(
+                    enabledBorder: const OutlineInputBorder(),
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.black,
+                        style: BorderStyle.solid,
+                        width: 2,
+                      ),
+                    ),
+                    label: Text(
+                      "Item Price",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lexendMega(
+                        fontSize: 12,
+                        color: Colors.white70,
+                      ),
+                    ),
+                  ),
+                  style: GoogleFonts.lexendMega(
+                    fontSize: 12,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: TextField(
+                  controller: mPesaMessage,
+                  keyboardType: TextInputType.text,
+                  textCapitalization: TextCapitalization.sentences,
+                  decoration: InputDecoration(
+                    enabledBorder: const OutlineInputBorder(),
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.black,
+                        style: BorderStyle.solid,
+                        width: 2,
+                      ),
+                    ),
+                    label: Text(
+                      "Paste Mpesa Message",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lexendMega(
+                        fontSize: 12,
+                        color: Colors.white70,
+                      ),
+                    ),
+                  ),
+                  style: GoogleFonts.lexendMega(
+                    fontSize: 12,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 15),
+                child: ElevatedButton(
+                  onPressed: () {
+                    String validator = validateBeforeSubmit();
+      
+                    if (validator != "empty") {
+                      Fluttertoast.showToast(
+                        msg: "Please Wait..",
+                        gravity: ToastGravity.CENTER,
+                        backgroundColor: Colors.black,
+                      );
+                      updatePettyCashInDB(selectVal);
+                      Fluttertoast.showToast(
+                        msg: "Petty Cash Updated!",
+                        gravity: ToastGravity.CENTER,
+                        backgroundColor: Colors.black,
+                      );
+                    } else {
+                      Fluttertoast.showToast(
+                        msg:
+                            "Please fill announcement Title and Anouncement body before sending.",
+                        gravity: ToastGravity.CENTER,
+                        backgroundColor: Colors.black,
+                        timeInSecForIosWeb: 7,
+                      );
+                    }
+      
+                    // loopThroughNotificationTokensToSendNotificaitons();
+                  },
+                  child: Text(
+                    "Send",
+                    style: GoogleFonts.lexendMega(
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

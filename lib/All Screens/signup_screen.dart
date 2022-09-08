@@ -34,6 +34,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   List schoolList = [];
   late String schoolName;
 
+  late String schoolChecker;
+
   String validateBeforeSending() {
     if (nameTextEditingController.text.isEmpty ||
         phoneTextEditingController.text.isEmpty ||
@@ -43,6 +45,81 @@ class _SignUpScreenState extends State<SignUpScreen> {
       return "empty";
     } else {
       return "not empty";
+    }
+  }
+
+  Future checkIfSchoolExists() async {
+    // Map schoolBoolean = {
+    //   schoolNameTextEditingController.text.trim(): "false",
+    // };
+
+    // userReference
+    //     .child("schools")
+    //     .update(
+    //       schoolNameTextEditingController.text.trim(): "false",
+    //     );
+
+    Fluttertoast.showToast(
+      msg: "Checking If School Exists in Our Database",
+      backgroundColor: Colors.black,
+      textColor: Colors.white,
+    );
+    print("\n\n\n Checking Schools \n\n\n");
+
+    try {
+      // ignore: unused_local_variable
+      var ref = await databaseReference.child("users").child("schools");
+
+      print(schoolNameTextEditingController.text.trim());
+
+      var snapshot = await ref.get();
+      if (snapshot.exists) {
+        print(snapshot.exists);
+
+        try {
+          schoolChecker =
+              snapshot.value[schoolNameTextEditingController.text.trim()];
+        } catch (e) {
+          print(e);
+        }
+
+        print("\n\n\n\n\n$schoolChecker\n\n\n\n\n");
+
+        Future.delayed(Duration(seconds: 5));
+
+        if (schoolChecker != "false") {
+          registerNewUser(context);
+          print("DONE!!");
+        } else {
+          Fluttertoast.showToast(
+            msg:
+                "Please contact School Link Platform to activate your school.\nlimeappdevs@gmail.com",
+            backgroundColor: Colors.black,
+            textColor: Colors.white,
+            timeInSecForIosWeb: 20,
+          );
+        }
+      } else {
+        Fluttertoast.showToast(
+          msg:
+              "School Does Not Exist in Our Database.\nContact limeappdevs@gmail.com to get you  on our Platform.",
+          backgroundColor: Colors.black,
+          textColor: Colors.white,
+          timeInSecForIosWeb: 20,
+        );
+      }
+    } catch (e) {
+      Fluttertoast.showToast(
+        msg:
+            "School Does Not Exist in Our Database.\nContact limeappdevs@gmail.com to get you  on our Platform.",
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+        timeInSecForIosWeb: 20,
+      );
+      print(schoolNameTextEditingController.text.trim());
+      print(
+          "Error: School or Driver Does Not Exist in Our Database. Contact the School or Driver.");
+      print("$e");
     }
   }
 
@@ -104,7 +181,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       };
 
       userReference
-          .child(schoolNameTextEditingController.text)
+          .child(schoolNameTextEditingController.text.trim())
           .child("Admin")
           .child(user.uid)
           .set(
@@ -114,6 +191,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
       userReference.child("Admin").child(user.uid).set(
             userDataMapShallow,
           ); // sets the user data in the database in the form it was given in the map
+
+      // Map schoolBoolean = {
+      //   "bool": "false",
+      // };
+
+      // userReference
+      //     .child("schools")
+      //     .child(schoolNameTextEditingController.text.trim())
+      //     .set(schoolBoolean);
 
       displayToastMessage(
         "Please verify your email adress.\nCheck SPAM Folder if you don't recieve an Email.",
@@ -373,7 +459,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         onPressed: () async {
                           String validator = validateBeforeSending();
                           if (validator != "empty") {
-                            registerNewUser(context);
+                            checkIfSchoolExists();
+                            // registerNewUser(context);
                           } else {
                             Fluttertoast.showToast(
                               msg: "Please Fill all the required fields above.",

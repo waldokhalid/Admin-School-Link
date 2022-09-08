@@ -72,7 +72,7 @@ class _ParentsListState extends State<ParentsList> {
     var ref = databaseReference.child("users/$schoolName/Parents");
     var snapshot = await ref.get();
     if (snapshot.exists) {
-      print(snapshot.value[0]);
+      // print(snapshot.value[0]);
       setState(() {
         var value = snapshot.value;
         parentList = Map.from(value)
@@ -146,7 +146,7 @@ class _ParentsListState extends State<ParentsList> {
           .update({
         "Paid": 0,
         "Balance": 0,
-        "Total": 0,
+        // "Total": 0,
       });
     } catch (e) {
       print(e);
@@ -267,218 +267,131 @@ class _ParentsListState extends State<ParentsList> {
                               textAlign: TextAlign.center,
                             ),
                             children: [
-                              Column(
-                                children: [
-                                  Text(
-                                    "Child Name: $childName",
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.lexendMega(
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  Text(
-                                    driverEmail,
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.lexendMega(
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    driverPhone,
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.lexendMega(
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  Text(
-                                    "Total School Fees: $totalSchoolFees",
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.lexendMega(
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    "Paid School Fees: $paidSchoolFees",
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.lexendMega(
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    "Balance School Fees: $balanceSchoolFees",
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.lexendMega(
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 50, left: 50),
-                                    child: TextField(
-                                      controller: feesPaymentUpdate,
-                                      keyboardType: TextInputType.number,
-                                      decoration: InputDecoration(
-                                        enabledBorder: OutlineInputBorder(),
-                                        border: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Colors.black,
-                                            style: BorderStyle.solid,
-                                            width: 2,
-                                          ),
-                                        ),
-                                        label: Text(
-                                          "Enter Paid Fees",
-                                          textAlign: TextAlign.center,
-                                          style: GoogleFonts.lexendMega(
-                                            fontSize: 12,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
+                              SingleChildScrollView(
+                                physics: ScrollPhysics(),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "Child Name: $childName",
+                                      textAlign: TextAlign.center,
                                       style: GoogleFonts.lexendMega(
                                         fontSize: 12,
                                         color: Colors.white,
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      ElevatedButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            updatedItemAmountToInt = int.parse(
-                                                feesPaymentUpdate.text);
-                                          });
-                                          updateSchoolFeesPayment(
-                                            totalSchoolFees,
-                                            paidSchoolFees,
-                                            balanceSchoolFees,
-                                            updatedItemAmountToInt,
-                                            parentUserUid,
-                                          );
-                                          feesPaymentUpdate.clear();
-                                          getParentDetails();
-                                          Fluttertoast.showToast(
-                                            msg:
-                                                "Total paid fees has been updated.\n$driverName will be able to see the update on their app.",
-                                            backgroundColor: Colors.black,
-                                            gravity: ToastGravity.CENTER,
-                                            textColor: Colors.white,
-                                            timeInSecForIosWeb: 5,
-                                            fontSize: 16,
-                                          );
-                                        },
-                                        child: Text(
-                                          "Add",
-                                          style: GoogleFonts.lexendMega(
-                                            fontSize: 12,
-                                          ),
-                                        ),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    Text(
+                                      driverEmail,
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.lexendMega(
+                                        fontSize: 12,
+                                        color: Colors.white,
                                       ),
-                                      ElevatedButton(
-                                        onPressed: () {
-                                          resetSchoolFees(parentUserUid);
-                                          Fluttertoast.showToast(
-                                            msg: "School Fees for $driverName has been Reset",
-                                            backgroundColor: Colors.black,
-                                            gravity: ToastGravity.CENTER,
-                                            textColor: Colors.white,
-                                            timeInSecForIosWeb: 4,
-                                          );
-                                        },
-                                        child: Text(
-                                          "Reset",
-                                          style: GoogleFonts.lexendMega(
-                                              fontSize: 12),
-                                        ),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      driverPhone,
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.lexendMega(
+                                        fontSize: 12,
+                                        color: Colors.white,
                                       ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 20),
-                                  totalSchoolFees == 0
-                                      ? Padding(
-                                          padding: const EdgeInsets.only(
-                                              right: 50, left: 50),
-                                          child: TextField(
-                                            controller: totalFeesToBePaid,
-                                            keyboardType: TextInputType.number,
-                                            decoration: InputDecoration(
-                                              enabledBorder:
-                                                  OutlineInputBorder(),
-                                              border: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Colors.black,
-                                                  style: BorderStyle.solid,
-                                                  width: 2,
-                                                ),
-                                              ),
-                                              label: Text(
-                                                "Enter TOTAL School Fees",
-                                                textAlign: TextAlign.center,
-                                                style: GoogleFonts.lexendMega(
-                                                  fontSize: 12,
-                                                  color: Colors.white,
-                                                ),
-                                              ),
+                                    ),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    Text(
+                                      "Total School Fees: $totalSchoolFees",
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.lexendMega(
+                                        fontSize: 12,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      "Paid School Fees: $paidSchoolFees",
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.lexendMega(
+                                        fontSize: 12,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      "Balance School Fees: $balanceSchoolFees",
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.lexendMega(
+                                        fontSize: 12,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: 50, left: 50),
+                                      child: TextField(
+                                        controller: feesPaymentUpdate,
+                                        keyboardType: TextInputType.number,
+                                        decoration: InputDecoration(
+                                          enabledBorder: OutlineInputBorder(),
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Colors.black,
+                                              style: BorderStyle.solid,
+                                              width: 2,
                                             ),
+                                          ),
+                                          label: Text(
+                                            "Enter Paid Fees",
+                                            textAlign: TextAlign.center,
                                             style: GoogleFonts.lexendMega(
                                               fontSize: 12,
                                               color: Colors.white,
                                             ),
                                           ),
-                                        )
-                                      : SizedBox(
-                                          height: 0,
                                         ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  totalSchoolFees == 0
-                                      ? ElevatedButton(
+                                        style: GoogleFonts.lexendMega(
+                                          fontSize: 12,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        ElevatedButton(
                                           onPressed: () {
                                             setState(() {
-                                              totalFeesToBePaidToInt =
-                                                  int.parse(
-                                                      totalFeesToBePaid.text);
+                                              updatedItemAmountToInt = int.parse(
+                                                  feesPaymentUpdate.text);
                                             });
-                                            totalSchoolFeesToBePaid(
-                                                totalFeesToBePaidToInt,
-                                                parentUserUid);
-                                            totalFeesToBePaid.clear();
-
+                                            updateSchoolFeesPayment(
+                                              totalSchoolFees,
+                                              paidSchoolFees,
+                                              balanceSchoolFees,
+                                              updatedItemAmountToInt,
+                                              parentUserUid,
+                                            );
+                                            feesPaymentUpdate.clear();
                                             getParentDetails();
                                             Fluttertoast.showToast(
                                               msg:
-                                                  "TOTAL amount of school fees the parent needs to pay has been updated!",
+                                                  "Total paid fees has been updated.\n$driverName will be able to see the update on their app.",
                                               backgroundColor: Colors.black,
                                               gravity: ToastGravity.CENTER,
                                               textColor: Colors.white,
@@ -487,16 +400,106 @@ class _ParentsListState extends State<ParentsList> {
                                             );
                                           },
                                           child: Text(
-                                            "Submit",
+                                            "Add",
                                             style: GoogleFonts.lexendMega(
                                               fontSize: 12,
                                             ),
                                           ),
-                                        )
-                                      : SizedBox(
-                                          height: 0,
                                         ),
-                                ],
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            resetSchoolFees(parentUserUid);
+                                            Fluttertoast.showToast(
+                                              msg: "School Fees for $driverName has been Reset",
+                                              backgroundColor: Colors.black,
+                                              gravity: ToastGravity.CENTER,
+                                              textColor: Colors.white,
+                                              timeInSecForIosWeb: 4,
+                                            );
+                                          },
+                                          child: Text(
+                                            "Reset",
+                                            style: GoogleFonts.lexendMega(
+                                                fontSize: 12),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 20),
+                                    totalSchoolFees == 0
+                                        ? Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 50, left: 50),
+                                            child: TextField(
+                                              controller: totalFeesToBePaid,
+                                              keyboardType: TextInputType.number,
+                                              decoration: InputDecoration(
+                                                enabledBorder:
+                                                    OutlineInputBorder(),
+                                                border: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Colors.black,
+                                                    style: BorderStyle.solid,
+                                                    width: 2,
+                                                  ),
+                                                ),
+                                                label: Text(
+                                                  "Enter TOTAL School Fees",
+                                                  textAlign: TextAlign.center,
+                                                  style: GoogleFonts.lexendMega(
+                                                    fontSize: 12,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                              style: GoogleFonts.lexendMega(
+                                                fontSize: 12,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          )
+                                        : SizedBox(
+                                            height: 0,
+                                          ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    totalSchoolFees == 0
+                                        ? ElevatedButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                totalFeesToBePaidToInt =
+                                                    int.parse(
+                                                        totalFeesToBePaid.text);
+                                              });
+                                              totalSchoolFeesToBePaid(
+                                                  totalFeesToBePaidToInt,
+                                                  parentUserUid);
+                                              totalFeesToBePaid.clear();
+                              
+                                              getParentDetails();
+                                              Fluttertoast.showToast(
+                                                msg:
+                                                    "TOTAL amount of school fees the parent needs to pay has been updated!",
+                                                backgroundColor: Colors.black,
+                                                gravity: ToastGravity.CENTER,
+                                                textColor: Colors.white,
+                                                timeInSecForIosWeb: 5,
+                                                fontSize: 16,
+                                              );
+                                            },
+                                            child: Text(
+                                              "Submit",
+                                              style: GoogleFonts.lexendMega(
+                                                fontSize: 12,
+                                              ),
+                                            ),
+                                          )
+                                        : SizedBox(
+                                            height: 0,
+                                          ),
+                                  ],
+                                ),
                               )
                             ],
                           ),
