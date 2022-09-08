@@ -160,7 +160,7 @@ class _DashBoardState extends State<DashBoard> {
     return Scaffold(
       backgroundColor: Colors.grey[800],
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: IconThemeData(color: Colors.grey[800]),
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.grey[800],
