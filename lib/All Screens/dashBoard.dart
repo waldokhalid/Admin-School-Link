@@ -164,13 +164,7 @@ class _DashBoardState extends State<DashBoard> {
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.grey[800],
-        title: Text(
-          "Dashboard",
-          style: GoogleFonts.lexendMega(
-            color: Colors.white,
-            fontSize: 16,
-          ),
-        ),
+        title: Row(children: [],),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

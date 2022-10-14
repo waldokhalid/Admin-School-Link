@@ -105,9 +105,8 @@ class StartScreen extends StatelessWidget {
                           ),
                         ),
                         style: TextButton.styleFrom(
-                          backgroundColor: Colors.tealAccent[400],
+                          foregroundColor: Colors.black, backgroundColor: Colors.tealAccent[400],
                           shadowColor: Colors.transparent,
-                          primary: Colors.black,
                           elevation: 1,
                         ),
                       )
@@ -138,9 +137,8 @@ class StartScreen extends StatelessWidget {
                           ),
                         ),
                         style: TextButton.styleFrom(
-                          backgroundColor: Colors.tealAccent[400],
+                          foregroundColor: Colors.black, backgroundColor: Colors.tealAccent[400],
                           shadowColor: Colors.transparent,
-                          primary: Colors.black,
                           elevation: 1,
                         ),
                       ),

@@ -206,10 +206,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           style: TextButton.styleFrom(
+                            foregroundColor: Colors.black, 
                             backgroundColor: Colors.tealAccent[400],
                             shadowColor: Colors.transparent,
                             elevation: 1,
-                            primary: Colors.black,
                           ),
                         ),
                         TextButton(
@@ -244,9 +244,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       style: TextButton.styleFrom(
-                        backgroundColor: Colors.yellow[300]?.withOpacity(0.1),
-                        primary: Colors.redAccent,
-                        onSurface: Colors.cyanAccent,
+                        foregroundColor: Colors.redAccent, backgroundColor: Colors.yellow[300]?.withOpacity(0.1), disabledForegroundColor: Colors.cyanAccent.withOpacity(0.38),
                         elevation: 0,
                       ),
                     ),

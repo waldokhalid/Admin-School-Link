@@ -478,10 +478,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                         style: TextButton.styleFrom(
-                          backgroundColor: Colors.tealAccent[400],
+                          foregroundColor: Colors.black, backgroundColor: Colors.tealAccent[400],
                           elevation: 1,
                           shadowColor: Colors.transparent,
-                          primary: Colors.black,
                         ),
                       ),
                     ],
@@ -502,9 +501,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   style: TextButton.styleFrom(
-                    backgroundColor: Colors.yellow[300]!.withOpacity(0.1),
-                    primary: Colors.redAccent,
-                    onSurface: Colors.cyanAccent,
+                    foregroundColor: Colors.redAccent, backgroundColor: Colors.yellow[300]!.withOpacity(0.1), disabledForegroundColor: Colors.cyanAccent.withOpacity(0.38),
                     elevation: 0,
                   ),
                 ),
